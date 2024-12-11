@@ -1,7 +1,7 @@
 # Importando as classes e o mêtodo 'os' para limpar o terminal
-from classes.cliente import PessoaFisica, PessoaJuridica
-from classes.veiculo import Veiculo
-from classes.ordem_servico import OrdemServico
+from cliente.entity import PessoaFisica, PessoaJuridica
+from veiculo.entity import Veiculo
+from ordem_de_servico.entity import OrdemServico
 import os
 
 
