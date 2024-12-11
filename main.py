@@ -1,16 +1,18 @@
 # Importando as classes e o mêtodo 'os' para limpar o terminal
+from cliente.screen import menu as show_cliente
 from cliente.entity import PessoaFisica, PessoaJuridica
 from veiculo.entity import Veiculo
 from ordem_de_servico.entity import OrdemServico
 import os
+from time import sleep
 
 
-def exibindo_menu():
+def exibindo_menu(opcao=None):
+    if opcao != None:
+        return opcao
+    
     print("\nMenu:")
-    print("1 - Adicionar cliente Pessoa Física")
-    print("2 - Adicionar cliente Pessoa Jurídica")
-    print("3 - Remover cliente")
-    print("4 - Mostrar dados do cliente")
+    print("C - Entrar no Menu do Cliente")
     print("5 - Adicionar veículo ao cliente")
     print("6 - Remover veículo do cliente")
     print("7 - Criar ordem de serviço")
@@ -18,18 +20,20 @@ def exibindo_menu():
     print("9 - Listar ordens de serviço ativas")
     print("10 - Historíco Geral de Ordens de Serviço")
     print("11 - Sair")
-    opcao = input("Escolha uma opção: ")
-    return opcao
 
+    return input("Escolha uma opção: ")
 
 def main():
     clientes = []
     ordens_servico = []
+    opcao = None
 
     while True:
-        opcao = exibindo_menu()
+        opcao = exibindo_menu(opcao)
 
         match opcao:
+            case 'C':
+                opcao = show_cliente.menu()
             case '1':  # Adiciona o cliente em Pessoa Física
                 os.system('clear')
                 nome = input("\nDigite o nome da pessoa: ")
@@ -39,6 +43,8 @@ def main():
                 pessoa_fisica = PessoaFisica(nome, celular, email, cpf)
                 clientes.append(pessoa_fisica)
                 print(f"Cliente {nome} adicionado com sucesso!")
+                sleep(2)
+                opcao = "C"
 
             case '2':  # Adiciona o cliente Pessoa Jurídica
                 os.system('clear')
@@ -49,6 +55,8 @@ def main():
                 pessoa_juridica = PessoaJuridica(nome, celular, email, cnpj)
                 clientes.append(pessoa_juridica)
                 print(f"Cliente {nome} adicionado com sucesso!")
+                sleep(2)
+                opcao = "C"
 
             case '3':  # Remove o cliente
                 os.system('clear')
